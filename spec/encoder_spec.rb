@@ -34,6 +34,16 @@ describe Encoder do
       end
     end
 
+    describe ' #upper?' do
+      it 'returns true if character is not lowercase' do
+        expect(@encoder.upcase?('A')).to eq(true)
+        expect(@encoder.upcase?('!')).to eq(true)
+      end
+      it 'returns false if character is lowercase' do
+        expect(@encoder.upcase?('a')).to eq(false)
+      end
+    end
+
     describe ' #clean' do
       it 'removes all characters not in alphabet' do
         expect(@encoder.clean('he^ll2o wor_ld!')).to eq('hello world')

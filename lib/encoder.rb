@@ -13,6 +13,10 @@ class Encoder
     alphabet.include?(char)
   end
 
+  def upcase?(char)
+    char == char.upcase
+  end
+
   def clean(message)
     lowercase = message.chars.map{|char|char.downcase}
     cleaned_message = lowercase.select{|char|valid?(char)}.join('')
@@ -50,5 +54,18 @@ class Encoder
   def decrypt(message = @message)
     index_message = create_index_message(message)
     unshift(index_message).map{|index| @alphabet[index]}.join('')
+  end
+
+  def finish_message(new, original)
+    new_array = new.chars
+    finished_message = []
+    original.each_with_object(i=0) do |char|
+      if valid?(char)
+        finished_message << new[i]
+      else
+        finished_message << original[i]
+      end
+      i += 1
+    end
   end
 end
