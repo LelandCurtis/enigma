@@ -71,7 +71,11 @@ class Encoder
     finished_message.join('')
   end
 
-  def encrypt_message
+  def encrypt_message(message)
+    finish_message(encrypt(message), message)
+  end
 
+  def decrypt_message(message)
+    finish_message(decrypt(message), message)
   end
 end
