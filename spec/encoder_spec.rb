@@ -134,6 +134,26 @@ describe Encoder do
         expect(@encoder.decrypt('keder ohulw')).to eq('hello world')
       end
     end
+
+    describe ' #encrypt message' do
+      it 'returns a string' do
+        expect(@encoder.encrypt('Hel_lo Wor6ld!')).to be_a(String)
+      end
+      it 'returns a properly encrypted string' do
+        expect(@encoder.encrypt_message('hello_world!')).to eq('keder ohulw!')
+        expect(@encoder.encrypt_message('Hel_lo Wor6ld!')).to eq('Ked_er Ohu6lw!')
+      end
+    end
+
+    describe ' #decrypt_message' do
+      it 'returns a string' do
+        expect(@encoder.decrypt('Ked_er Ohu6lw!')).to be_a(String)
+      end
+      it 'returns a properly encrypted string' do
+        expect(@encoder.decrypt_message('keder ohulw!')).to eq('hello_world!')
+        expect(@encoder.decrypt_message('Ked_er Ohu6lw!')).to eq('Hel_lo Wor6ld!')
+      end
+    end
   end
 end
 
