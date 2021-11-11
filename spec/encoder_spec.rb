@@ -7,7 +7,7 @@ describe Encoder do
     @key = '02715'
     @date = '040895'
     @cypher = Cypher.new(@key, @date)
-    @encoder = Encoder.new(@message, @cypher)
+    @encoder = Encoder.new(@cypher)
   end
 
   describe 'initialize' do
@@ -15,7 +15,6 @@ describe Encoder do
       expect(@encoder).to be_a(Encoder)
     end
     it 'has attributes' do
-      expect(@encoder.message).to eq(@message)
       expect(@encoder.cypher).to be_a(Cypher)
       expect(@encoder.alphabet).to eq(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "])
     end
@@ -119,7 +118,7 @@ describe Encoder do
 
     describe ' #encrypt' do
       it 'returns a string' do
-        expect(@encoder.encrypt).to be_a(String)
+        expect(@encoder.encrypt('hello world')).to be_a(String)
       end
       it 'returns a properly encrypted string' do
         expect(@encoder.encrypt('hello world')).to eq('keder ohulw')

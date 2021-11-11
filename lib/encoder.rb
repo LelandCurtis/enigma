@@ -3,8 +3,7 @@ require './lib/cypher'
 class Encoder
   attr_accessor :message, :cypher, :letter_message, :index_message, :alphabet
 
-  def initialize(message, cypher)
-    @message = message
+  def initialize(cypher)
     @cypher = cypher
     @alphabet = ('a'..'z').to_a << ' '
   end
@@ -46,12 +45,12 @@ class Encoder
     unshifted
   end
 
-  def encrypt(message = @message)
+  def encrypt(message)
     index_message = create_index_message(message)
     shift(index_message).map{|index| @alphabet[index]}.join('')
   end
 
-  def decrypt(message = @message)
+  def decrypt(message)
     index_message = create_index_message(message)
     unshift(index_message).map{|index| @alphabet[index]}.join('')
   end
@@ -69,7 +68,10 @@ class Encoder
         finished_message << char
       end
     end
-
     finished_message.join('')
+  end
+
+  def encrypt_message
+
   end
 end
