@@ -96,5 +96,28 @@ describe Enigma do
         expect(@enigma.decrypt(cyphertext_1, @key, @date)[:decryption]).to eq('Hello World!')
       end
     end
+
+    describe ' #find_shift' do
+      before(:each) do
+        @crackable_message = 'This is a crackable message end'
+        @cypher_2 = Cypher.new(@key, @date)
+        @encoder_2 = Encoder.new(@cypher_2)
+        @cyphertext_2 = @encoder_2.encrypt_message(@crackable_message)
+      end
+
+      it 'returns an array from a message' do
+        expect(@enigma.find_shift(@crackable_message)).to be_a(Array)
+      end
+      it 'returns an array of 4 values' do
+        expect(@enigma.find_shift(@crackable_message).count).to eq(4)
+      end
+      it 'returns an array of integers' do
+        expect(@enigma.find_shift(@crackable_message).all?{|v|v.class == Integer}).to eq(true)
+      end
+      it 'returns the expect shift in proper order' do
+        expected = @cypher_2.shifts
+        expect(@enigma.find_shift(@crackable_message)).to eq(expected)
+      end
+    end
   end
 end
