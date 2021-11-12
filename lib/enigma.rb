@@ -11,6 +11,10 @@ class Enigma
     Date.today.strftime('%d%m%y')
   end
 
+  def random_key
+    '%06d' % rand(0..999999)
+  end
+
   def encrypt(message, key, date = today)
     cypher = Cypher.new(key, date)
     encoder = Encoder.new(cypher)
