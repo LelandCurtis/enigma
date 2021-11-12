@@ -11,14 +11,18 @@ class Enigma
     Date.today.strftime('%d%m%y')
   end
 
-  def encrypt(message, key, date = today)
+  def random_key
+    '%05d' % rand(0..99999)
+  end
+
+  def encrypt(message, key = random_key, date = today)
     cypher = Cypher.new(key, date)
     encoder = Encoder.new(cypher)
     cyphertext = encoder.encrypt_message(message)
     return {:encryption => cyphertext, :key => key, :date => date}
   end
 
-  def decrypt(message, key, date = today)
+  def decrypt(message, key = random_key, date = today)
     cypher = Cypher.new(key, date)
     encoder = Encoder.new(cypher)
     message = encoder.decrypt_message(message)

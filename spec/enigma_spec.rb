@@ -34,6 +34,15 @@ describe Enigma do
       end
     end
 
+    describe 'random_key' do
+      it 'generates a string' do
+        expect(@enigma.random_key).to be_a(String)
+      end
+      it 'generates a 5 character string' do
+        expect(@enigma.random_key.chars.count).to eq(5)
+      end
+    end
+
     describe ' #encrypt' do
       it 'returns a hash' do
         expect(@enigma.encrypt(@message, @key, @date)).to be_a(Hash)
@@ -54,6 +63,11 @@ describe Enigma do
       it 'returns correct encryption' do
         message_1 = 'Hello World!'
         expect(@enigma.encrypt(message_1, @key, @date)[:encryption]).to eq('Keder Ohulw!')
+      end
+      it 'can use the defualt date of today' do
+        allow(@enigma).to receive(:today).and_return("211111")
+        message_1 = 'Hello World!'
+        expect(@enigma.encrypt(message_1, @key)[:encryption]).to eq('NhdauCOdxow!')
       end
     end
 
