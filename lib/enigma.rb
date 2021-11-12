@@ -12,16 +12,16 @@ class Enigma
   end
 
   def encrypt(message, key, date = today)
-    #cypher = Cypher.new(key, date)
-    #encoder = Encoder.new()
-    cyphertext = encoder.encrypt(message, cypher.shift)
+    cypher = Cypher.new(key, date)
+    encoder = Encoder.new(cypher)
+    cyphertext = encoder.encrypt_message(message)
     return {:encryption => cyphertext, :key => key, :date => date}
   end
 
   def decrypt(message, key, date = today)
-    #cypher = Cypher.new(key, date)
-    #encoder = Encoder.new()
-    message = encoder.encrypt(message, cypher.shift)
+    cypher = Cypher.new(key, date)
+    encoder = Encoder.new(cypher)
+    message = encoder.decrypt_message(message)
     return {:decryption => message, :key => key, :date => date}
   end
 end

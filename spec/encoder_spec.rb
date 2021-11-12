@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require './lib/encoder'
 require './lib/cypher'
 
@@ -155,19 +158,3 @@ describe Encoder do
     end
   end
 end
-
-
-
-#       it 'returns an array of integers' do
-#         expect(@encoder.calc_keys.all?{|v|v.class == Integer}).to eq(true)
-#       end
-#       it 'returns correct keys' do
-#         expect(@encoder.calc_keys).to eq([2,27,71,15])
-#       end
-# xit 'initializes letter_message array' do
-#   expected = ["k", "e", "d", "e", "r", " ", "o", "h", "u", "l", "w"]
-#   expect(@encoder.letter_message).to eq(expected)
-# end
-#     end
-#   end
-# end

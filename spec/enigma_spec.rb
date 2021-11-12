@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'date'
 require './lib/enigma'
 require './lib/cypher'
@@ -11,17 +14,15 @@ describe Enigma do
     it 'exists' do
       expect(@enigma).to be_a(Enigma)
     end
-    xit 'has attributes' do
+    it 'has attributes' do
     end
   end
 
   describe 'methods' do
     before(:each) do
-      @message = 'hello world'
+      @message = 'hello world!'
       @key = '02715'
       @date = '040895'
-      @cyphertext = double('cyphertext')
-      allow(@cyphertext).to receive(:decrypt).and_return(@message)
     end
 
     describe ' #today' do
@@ -34,49 +35,51 @@ describe Enigma do
     end
 
     describe ' #encrypt' do
-      xit 'returns a hash' do
+      it 'returns a hash' do
         expect(@enigma.encrypt(@message, @key, @date)).to be_a(Hash)
       end
-      xit 'returns a hash with correct keys' do
+      it 'returns a hash with correct keys' do
         expected = [:encryption, :key, :date]
         expect(@enigma.encrypt(@message, @key, @date).keys).to eq(expected)
       end
-      xit 'returns correct key' do
+      it 'returns correct key' do
         expect(@enigma.encrypt(@message, @key, @date)[:key]).to eq(@key)
       end
-      xit 'returns correct date' do
+      it 'returns correct date' do
         expect(@enigma.encrypt(@message, @key, @date)[:date]).to eq(@date)
       end
-      xit 'returns string as encryption' do
+      it 'returns string as encryption' do
         expect(@enigma.encrypt(@message, @key, @date)[:encryption]).to be_a(String)
       end
-      xit 'returns correct encryption' do
-        message_mock = double('message_mock')
-        allow(message_mock).to receive(:encrypt).and_return(@cyphertext)
-        expected = @cyphertext
-        expect(@enigma.encrypt(message_mock, @key, @date)[:encryption]).to eq(expected)
+      it 'returns correct encryption' do
+        message_1 = 'Hello World!'
+        expect(@enigma.encrypt(message_1, @key, @date)[:encryption]).to eq('Keder Ohulw!')
       end
     end
 
     describe ' #decrypt' do
-      xit 'returns a hash' do
+      before(:each) do
+        @cyphertext = 'keder ohulw!'
+      end
+      it 'returns a hash' do
         expect(@enigma.decrypt(@cyphertext, @key, @date)).to be_a(Hash)
       end
-      xit 'returns a hash with correct keys' do
+      it 'returns a hash with correct keys' do
         expected = [:decryption, :key, :date]
         expect(@enigma.decrypt(@cyphertext, @key, @date).keys).to eq(expected)
       end
-      xit 'returns correct key' do
+      it 'returns correct key' do
         expect(@enigma.decrypt(@cyphertext, @key, @date)[:key]).to eq(@key)
       end
-      xit 'returns correct date' do
+      it 'returns correct date' do
         expect(@enigma.decrypt(@cyphertext, @key, @date)[:date]).to eq(@date)
       end
-      xit 'returns string as decryption' do
+      it 'returns string as decryption' do
         expect(@enigma.decrypt(@cyphertext, @key, @date)[:decryption]).to be_a(String)
       end
-      xit 'returns correct decryption' do
-        expect(@enigma.decrypt(@cyphertext, @key, @date)[:decryption]).to eq(@message)
+      it 'returns correct decryption' do
+        cyphertext_1 = 'Keder Ohulw!'
+        expect(@enigma.decrypt(cyphertext_1, @key, @date)[:decryption]).to eq('Hello World!')
       end
     end
   end
