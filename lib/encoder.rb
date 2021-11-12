@@ -63,8 +63,7 @@ class Encoder
       else
         finished_message << char
       end
-    end
-    finished_message.join('')
+    end.join('')
   end
 
   def encrypt_message(message)
