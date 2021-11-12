@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2021-11-11T17:03:56-07:00">2021-11-11T17:03:56-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2021-11-11T17:20:19-07:00">2021-11-11T17:20:19-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -30,7 +30,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         23.71
+         21.14
        </span>
     </span> hits/line
     )
@@ -43,8 +43,8 @@
   </div>
 
   <div class="t-line-summary">
-    <b>232</b> relevant lines,
-    <span class="green"><b>232</b> lines covered</span> and
+    <b>228</b> relevant lines,
+    <span class="green"><b>228</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed. </span>
     (<span class="green">
   100.0%
@@ -84,11 +84,11 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#0893d86689508b2cbf7774aa75a7de9a2fe020dc" class="src_link" title="lib/encoder.rb">lib/encoder.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">81</td>
-            <td class="cell--number">48</td>
-            <td class="cell--number">48</td>
+            <td class="cell--number">90</td>
+            <td class="cell--number">44</td>
+            <td class="cell--number">44</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">80.65</td>
+            <td class="cell--number">72.55</td>
             
           </tr>
         
@@ -440,8 +440,8 @@
     
 
     <div class="t-line-summary">
-      <b>48</b> relevant lines.
-      <span class="green"><b>48</b> lines covered</span> and
+      <b>44</b> relevant lines.
+      <span class="green"><b>44</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -574,8 +574,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="814" data-linenumber="12">
-            <span class="hits">814</span>
+          <li class="covered" data-hits="590" data-linenumber="12">
+            <span class="hits">590</span>
             
 
             
@@ -1080,101 +1080,101 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="58">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="58">
+            
             
 
             
 
-            <code class="ruby">  def finish_message(new, original)</code>
+            <code class="ruby">  # def finish_message(new, original)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="21" data-linenumber="59">
-            <span class="hits">21</span>
+          <li class="never" data-hits="" data-linenumber="59">
+            
             
 
             
 
-            <code class="ruby">    finished_message = []</code>
+            <code class="ruby">  #   new_chars = new.chars</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="21" data-linenumber="60">
-            <span class="hits">21</span>
+          <li class="never" data-hits="" data-linenumber="60">
+            
             
 
             
 
-            <code class="ruby">    original.chars.each_with_object(i=0) do |char|</code>
+            <code class="ruby">  #   original.chars.each_with_object(finished_message = []) do |char|</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="259" data-linenumber="61">
-            <span class="hits">259</span>
+          <li class="never" data-hits="" data-linenumber="61">
+            
             
 
             
 
-            <code class="ruby">      if valid?(char.downcase) &amp;&amp; upcase?(char)</code>
+            <code class="ruby">  #     if valid?(char.downcase) &amp;&amp; upcase?(char)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="35" data-linenumber="62">
-            <span class="hits">35</span>
+          <li class="never" data-hits="" data-linenumber="62">
+            
             
 
             
 
-            <code class="ruby">        finished_message &lt;&lt; new.chars[i].upcase</code>
+            <code class="ruby">  #       finished_message &lt;&lt; new_chars.shift.upcase</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="35" data-linenumber="63">
-            <span class="hits">35</span>
+          <li class="never" data-hits="" data-linenumber="63">
+            
             
 
             
 
-            <code class="ruby">        i += 1</code>
+            <code class="ruby">  #     elsif valid?(char.downcase)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="224" data-linenumber="64">
-            <span class="hits">224</span>
+          <li class="never" data-hits="" data-linenumber="64">
+            
             
 
             
 
-            <code class="ruby">      elsif valid?(char.downcase)</code>
+            <code class="ruby">  #       finished_message &lt;&lt; new_chars.shift</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="196" data-linenumber="65">
-            <span class="hits">196</span>
+          <li class="never" data-hits="" data-linenumber="65">
+            
             
 
             
 
-            <code class="ruby">        finished_message &lt;&lt; new.chars[i]</code>
+            <code class="ruby">  #     else</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="196" data-linenumber="66">
-            <span class="hits">196</span>
+          <li class="never" data-hits="" data-linenumber="66">
+            
             
 
             
 
-            <code class="ruby">        i += 1</code>
+            <code class="ruby">  #       finished_message &lt;&lt; char</code>
           </li>
         </div>
       
@@ -1185,18 +1185,18 @@
 
             
 
-            <code class="ruby">      else</code>
+            <code class="ruby">  #     end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="28" data-linenumber="68">
-            <span class="hits">28</span>
+          <li class="never" data-hits="" data-linenumber="68">
+            
             
 
             
 
-            <code class="ruby">        finished_message &lt;&lt; char</code>
+            <code class="ruby">  #   end</code>
           </li>
         </div>
       
@@ -1207,7 +1207,7 @@
 
             
 
-            <code class="ruby">      end</code>
+            <code class="ruby">  #   finished_message.join(&#39;&#39;)</code>
           </li>
         </div>
       
@@ -1218,62 +1218,62 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">  # end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="21" data-linenumber="71">
-            <span class="hits">21</span>
-            
-
-            
-
-            <code class="ruby">    finished_message.join(&#39;&#39;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="72">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="73">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="74">
+          <li class="covered" data-hits="1" data-linenumber="71">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def encrypt_message(message)</code>
+            <code class="ruby">  def finish_message(new, original)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="9" data-linenumber="75">
-            <span class="hits">9</span>
+          <li class="covered" data-hits="21" data-linenumber="72">
+            <span class="hits">21</span>
             
 
             
 
-            <code class="ruby">    finish_message(encrypt(message), message)</code>
+            <code class="ruby">    new_chars = new.chars</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="21" data-linenumber="73">
+            <span class="hits">21</span>
+            
+
+            
+
+            <code class="ruby">    original.chars.each_with_object(finished_message = []) do |char|</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="259" data-linenumber="74">
+            <span class="hits">259</span>
+            
+
+            
+
+            <code class="ruby">      if valid?(char.downcase)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="231" data-linenumber="75">
+            <span class="hits">231</span>
+            
+
+            
+
+            <code class="ruby">        finished_message &lt;&lt; (upcase?(char) ? new_chars.shift.upcase : new_chars.shift)</code>
           </li>
         </div>
       
@@ -1284,12 +1284,67 @@
 
             
 
+            <code class="ruby">      else</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="28" data-linenumber="77">
+            <span class="hits">28</span>
+            
+
+            
+
+            <code class="ruby">        finished_message &lt;&lt; char</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="78">
+            
+            
+
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="79">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="21" data-linenumber="80">
+            <span class="hits">21</span>
+            
+
+            
+
+            <code class="ruby">    finished_message.join(&#39;&#39;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="81">
+            
+            
+
+            
+
             <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="77">
+          <li class="never" data-hits="" data-linenumber="82">
             
             
 
@@ -1300,29 +1355,29 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="78">
+          <li class="covered" data-hits="1" data-linenumber="83">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def decrypt_message(message)</code>
+            <code class="ruby">  def encrypt_message(message)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="8" data-linenumber="79">
-            <span class="hits">8</span>
+          <li class="covered" data-hits="9" data-linenumber="84">
+            <span class="hits">9</span>
             
 
             
 
-            <code class="ruby">    finish_message(decrypt(message), message)</code>
+            <code class="ruby">    finish_message(encrypt(message), message)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="80">
+          <li class="never" data-hits="" data-linenumber="85">
             
             
 
@@ -1333,7 +1388,51 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="81">
+          <li class="never" data-hits="" data-linenumber="86">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="87">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def decrypt_message(message)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="8" data-linenumber="88">
+            <span class="hits">8</span>
+            
+
+            
+
+            <code class="ruby">    finish_message(decrypt(message), message)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="89">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="90">
             
             
 

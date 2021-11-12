@@ -55,15 +55,24 @@ class Encoder
     unshift(index_message).map{|index| @alphabet[index]}.join('')
   end
 
+  # def finish_message(new, original)
+  #   new_chars = new.chars
+  #   original.chars.each_with_object(finished_message = []) do |char|
+  #     if valid?(char.downcase) && upcase?(char)
+  #       finished_message << new_chars.shift.upcase
+  #     elsif valid?(char.downcase)
+  #       finished_message << new_chars.shift
+  #     else
+  #       finished_message << char
+  #     end
+  #   end
+  #   finished_message.join('')
+  # end
   def finish_message(new, original)
-    finished_message = []
-    original.chars.each_with_object(i=0) do |char|
-      if valid?(char.downcase) && upcase?(char)
-        finished_message << new.chars[i].upcase
-        i += 1
-      elsif valid?(char.downcase)
-        finished_message << new.chars[i]
-        i += 1
+    new_chars = new.chars
+    original.chars.each_with_object(finished_message = []) do |char|
+      if valid?(char.downcase)
+        finished_message << (upcase?(char) ? new_chars.shift.upcase : new_chars.shift)
       else
         finished_message << char
       end
