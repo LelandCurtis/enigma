@@ -38,8 +38,8 @@ describe Enigma do
       it 'generates a string' do
         expect(@enigma.random_key).to be_a(String)
       end
-      it 'generates a 6 character string' do
-        expect(@enigma.random_key.chars.count).to eq(6)
+      it 'generates a 5 character string' do
+        expect(@enigma.random_key.chars.count).to eq(5)
       end
     end
 
