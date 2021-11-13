@@ -18,6 +18,6 @@ attr_reader :key, :date, :shifts
   end
 
   def calc_shifts
-    [calc_keys, calc_offsets].transpose.map{|pairs| pairs.sum}
+    [calc_keys, calc_offsets].transpose.map{|pairs| pairs.sum % 27}
   end
 end

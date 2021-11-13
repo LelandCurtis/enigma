@@ -19,7 +19,7 @@ describe Cypher do
       expect(@cypher.shifts).to be_a(Array)
     end
     it 'initializes shifts array' do
-      expect(@cypher.shifts).to eq([3,27,73,20])
+      expect(@cypher.shifts).to eq([3,0,19,20])
     end
   end
 
@@ -56,7 +56,7 @@ describe Cypher do
         expect(@cypher.calc_shifts.all?{|v|v.class == Integer}).to eq(true)
       end
       it 'returns correct shifts' do
-        expect(@cypher.calc_shifts).to eq([3,27,73,20])
+        expect(@cypher.calc_shifts).to eq([3,0,19,20])
       end
     end
   end
