@@ -2,7 +2,8 @@ require './lib/cypher'
 
 class Encoder
   attr_accessor :message, :cypher, :letter_message, :index_message, :alphabet
-
+  @@alphabet = ('a'..'z').to_a << ' '
+  
   def initialize(cypher)
     @cypher = cypher
     @alphabet = ('a'..'z').to_a << ' '
