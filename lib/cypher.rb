@@ -1,10 +1,11 @@
 class Cypher
-attr_reader :key, :date, :shifts
+attr_reader :key, :date
+attr_accessor :shifts
 
-  def initialize(key, date)
+  def initialize(key = nil, date = nil)
     @key = key
     @date = date
-    @shifts = calc_shifts
+    @shifts = calc_shifts if (key != nil && date != nil)
   end
 
   def calc_keys

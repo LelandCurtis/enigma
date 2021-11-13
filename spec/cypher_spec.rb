@@ -21,6 +21,10 @@ describe Cypher do
     it 'initializes shifts array' do
       expect(@cypher.shifts).to eq([3,0,19,20])
     end
+    it 'can initialize with no arguments' do
+      cypher_2 = Cypher.new
+      expect(cypher_2).to be_a(Cypher)
+    end
   end
 
   describe 'methods' do
