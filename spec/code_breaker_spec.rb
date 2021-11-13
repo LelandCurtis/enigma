@@ -20,6 +20,7 @@ describe CodeBreaker do
     it 'has attributes' do
       expect(@breaker.alphabet).to eq(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "])
       expect(@breaker.shifts).to eq([])
+      expect(@breaker.cypher).to be_a(Cypher)
     end
   end
 
@@ -46,6 +47,18 @@ describe CodeBreaker do
         expected = @cypher.shifts
         expect(@breaker.find_shifts(@cyphertext)).to eq(expected)
       end
+      it 'returns shifts that can decrypt entire message' do
+        @breaker.find_shifts(@cyphertext)
+        expect(@breaker.decrypt_message(@cyphertext)).to eq(@crackable_message)
+      end
     end
+
+    # describe ' #crack_keys' do
+    #   it ' returns keys' do
+    #
+    #   end
+    # end
+
+    describe ''
   end
 end
