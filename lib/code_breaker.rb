@@ -41,7 +41,7 @@ class CodeBreaker < Encoder
   end
 
   def find_valid_shift(base, array)
-
+    array.select{|shift|valid_shift?(base, shift)}[0]
   end
 
   def viable_shifts(shifts)

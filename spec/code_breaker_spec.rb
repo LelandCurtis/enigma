@@ -92,6 +92,20 @@ describe CodeBreaker do
       end
     end
 
+    describe ' #find_valid_shift' do
+      before(:each) do
+        @shift_1 = '05'
+        @viable_shifts = [['05', '32'], ['25', '52'], ['26', '53'], ['37', '64']]
+      end
+      it 'returns a String' do
+        expect(@breaker.find_valid_shift(@shift_1, @viable_shifts[1])).to be_a(String)
+      end
+      it 'returns the correct string' do
+        expect(@breaker.find_valid_shift(@shift_1, @viable_shifts[1])).to eq('52')
+      end
+
+    end
+
     describe ' #viable_shifts' do
       before(:each) do
         @possible_shifts = [['05', '32', '59', '86'],
