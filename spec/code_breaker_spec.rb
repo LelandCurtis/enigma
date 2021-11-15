@@ -53,76 +53,76 @@ describe CodeBreaker do
       end
     end
 
-    describe ' #possible_key_shifts' do
+    describe ' #possible_shifts' do
       before(:each) do
-        @key_shifts = [5 , 25, 26, 10]
-        @possible_key_shifts = [['05', '32', '59', '86'],
+        @shifts = [5 , 25, 26, 10]
+        @possible_shifts = [['05', '32', '59', '86'],
                                 ['25', '52', '79'],
                                 ['26', '53', '80'],
                                 ['10', '37', '64', '91']]
       end
       it 'returns an Array' do
-        expect(@breaker.possible_key_shifts(@key_shifts)).to be_a(Array)
+        expect(@breaker.possible_shifts(@shifts)).to be_a(Array)
       end
       it 'returns an Array of Arrays' do
-        expect(@breaker.possible_key_shifts(@key_shifts).all?{|v|v.class == Array}).to eq(true)
+        expect(@breaker.possible_shifts(@shifts).all?{|v|v.class == Array}).to eq(true)
       end
       it 'returns 2-digit string values inside arrays' do
-        expect(@breaker.possible_key_shifts(@key_shifts).flatten.all?{|v|v.class == String && v.chars.count == 2}).to eq(true)
+        expect(@breaker.possible_shifts(@shifts).flatten.all?{|v|v.class == String && v.chars.count == 2}).to eq(true)
       end
       it 'returns correct values' do
-        expect(@breaker.possible_key_shifts(@key_shifts)).to eq(@possible_key_shifts)
+        expect(@breaker.possible_shifts(@shifts)).to eq(@possible_shifts)
       end
     end
 
-    describe ' #valid_key_shift?' do
+    describe ' #valid_shift?' do
       before(:each) do
-        @key_1 = '05'
-        @key_2 = '51'
-        @key_3 = '65'
+        @shift_1 = '05'
+        @shift_2 = '51'
+        @shift_3 = '65'
       end
       it 'returns a boolean' do
-        expect(@breaker.valid_key_shift?(@key_1, @key_2)).to be_a(TrueClass || FalseClass)
+        expect(@breaker.valid_shift?(@shift_1, @shift_2)).to be_a(TrueClass || FalseClass)
       end
       it 'returns true if second index of first key matches first index of the secnd key' do
-        expect(@breaker.valid_key_shift?(@key_1, @key_2)).to eq(true)
+        expect(@breaker.valid_shift?(@shift_1, @shift_2)).to eq(true)
       end
       it 'returns false if second index of first key does not match the first index of the secnd key' do
-        expect(@breaker.valid_key_shift?(@key_1, @key_3)).to eq(false)
+        expect(@breaker.valid_shift?(@shift_1, @shift_3)).to eq(false)
       end
     end
 
-    describe ' #viable_key_shifts' do
+    describe ' #viable_shifts' do
       before(:each) do
-        @possible_key_shifts = [['05', '32', '59', '86'],
+        @possible_shifts = [['05', '32', '59', '86'],
                                 ['25', '52', '79'],
                                 ['26', '53', '80'],
                                 ['10', '37', '64', '91']]
-        @viable_key_shifts = [['05', '32'],
+        @viable_shifts = [['05', '32'],
                                 ['25', '52'],
                                 ['26', '53'],
                                 ['37', '64']]
       end
       it 'returns an Array' do
-        expect(@breaker.viable_key_shifts(@possible_key_shifts)).to be_a(Array)
+        expect(@breaker.viable_shifts(@possible_shifts)).to be_a(Array)
       end
       it 'returns an Array of Arrays' do
-        expect(@breaker.viable_key_shifts(@possible_key_shifts).all?{|v|v.class == Array}).to eq(true)
+        expect(@breaker.viable_shifts(@possible_shifts).all?{|v|v.class == Array}).to eq(true)
       end
       it 'returns correct values' do
-        expect(@breaker.viable_key_shifts(@possible_key_shifts)).to eq(@viable_key_shifts)
+        expect(@breaker.viable_shifts(@possible_shifts)).to eq(@viable_shifts)
       end
     end
 
     describe ' #build_keys' do
       before(:each) do
-        @viable_key_shifts = [['05', '32'], ['25', '52'], ['26', '53'], ['37', '64']]
+        @viable_shifts = [['05', '32'], ['25', '52'], ['26', '53'], ['37', '64']]
       end
       it 'returns an array' do
-        expect(@breaker.build_keys(@viable_key_shifts)).to be_a(Array)
+        expect(@breaker.build_keys(@viable_shifts)).to be_a(Array)
       end
       it 'returns an Array of 5 character Strings' do
-        expect(@breaker.build_keys(@viable_key_shifts).all?{|v|v.class == String && v.chars.count == 5}).to eq(true)
+        expect(@breaker.build_keys(@viable_shifts).all?{|v|v.class == String && v.chars.count == 5}).to eq(true)
       end
       it 'returns the correct array of keys' do
         expected = ['05264', '32537']

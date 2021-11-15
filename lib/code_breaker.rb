@@ -21,53 +21,67 @@ class CodeBreaker < Encoder
     @cypher.shifts = shifts.rotate(4 - message.chars.count % 4)
   end
 
-  def possible_key_shifts(key_shifts)
-    possible_key_shifts = key_shifts.map do |key_shift|
+  def possible_shifts(shifts)
+    possible_shifts = shifts.map do |shift|
       temp = []
-      until key_shift.to_s.chars.count > 2
-        temp << '%02d' % key_shift
-        key_shift += 27
+      until shift.to_s.chars.count > 2
+        temp << '%02d' % shift
+        shift += 27
       end
       temp
     end
   end
 
-  def valid_key_shift?(key_1, key_2)
-    if key_1.chars[1] == key_2.chars[0]
+  def valid_shift?(shift_1, shift_2)
+    if shift_1.chars[1] == shift_2.chars[0]
       return true
     else
       return false
     end
   end
 
-  def viable_key_shifts(key_shifts)
+  def find_valid_shift(base, array)
+
+  end
+
+  def viable_shifts(shifts)
     i = 0
     pass_1= []
     3.times do
-      valid_key_shifts = key_shifts[i].select do |key_shift_1|
-        key_shifts[i+1].map{|key_shift_2| valid_key_shift?(key_shift_1, key_shift_2)}.include?(true)
+      valid_shifts = shifts[i].select do |shift_1|
+        shifts[i+1].map{|shift_2| valid_shift?(shift_1, shift_2)}.include?(true)
       end
       i += 1
-      pass_1 << valid_key_shifts
+      pass_1 << valid_shifts
     end
     i = 0
-    pass_1 << key_shifts[3]
+    pass_1 << shifts[3]
     pass_2 = []
     3.times do
-      valid_key_shifts = pass_1.reverse[i].select do |key_shift_1|
-        pass_1.reverse[i+1].map{|key_shift_2| valid_key_shift?(key_shift_2, key_shift_1)}.include?(true)
+      valid_shifts = pass_1.reverse[i].select do |shift_1|
+        pass_1.reverse[i+1].map{|shift_2| valid_shift?(shift_2, shift_1)}.include?(true)
       end
       i += 1
-      pass_2 << valid_key_shifts
+      pass_2 << valid_shifts
     end
-    viable_key_shifts = (pass_2 << pass_1[0]).reverse
+    viable_shifts = (pass_2 << pass_1[0]).reverse
   end
+
+  # def build_keys(shifts)
+  #   shifts[0].map do |shift_start|
+  #     key << shift_start
+  #     i = 1
+  #     3.times do
+  #       shifts[i]
+  #     end
+  #   end
+  # end
 
   def crack_keys(message, date = today)
     shifts = find_shifts(message)
     date_offset = @cypher.calc_offsets(date)
-    key_shifts = [shifts, date_offset].transpose.map{|pair| (pair[0]-pair[1])%27}
-    possible_key_shifts = possible_key_shifts(key_shifts)
+    shifts = [shifts, date_offset].transpose.map{|pair| (pair[0]-pair[1])%27}
+    possible_shifts = possible_shifts(shifts)
   end
 
 end
