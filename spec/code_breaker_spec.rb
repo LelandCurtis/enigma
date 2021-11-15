@@ -114,6 +114,21 @@ describe CodeBreaker do
       end
     end
 
+    describe ' #build_keys' do
+      before(:each) do
+        @viable_key_shifts = [['05', '32'], ['25', '52'], ['26', '53'], ['37', '64']]
+      end
+      it 'returns an array' do
+        expect(@breaker.build_keys(@viable_key_shifts)).to be_a(Array)
+      end
+      it 'returns an Array of 5 character Strings' do
+        expect(@breaker.build_keys(@viable_key_shifts).all?{|v|v.class == String && v.chars.count == 5}).to eq(true)
+      end
+      it 'returns the correct array of keys' do
+        expected = ['05264', '32537']
+      end
+    end
+
     describe ' #crack_keys' do
       it ' returns a string' do
         expect(@breaker.crack_keys(@message, @date)).to be_a(String)
