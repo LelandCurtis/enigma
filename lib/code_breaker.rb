@@ -25,19 +25,26 @@ class CodeBreaker < Encoder
     possible_key_shifts = key_shifts.map do |key_shift|
       temp = []
       until key_shift.to_s.chars.count > 2
-        temp << key_shift
+        temp << '%02d' % key_shift
         key_shift += 27
       end
       temp
     end
-    possible_key_shifts
+  end
+
+  def valid_key_shift?(key_1, key_2)
+    if key_1.chars[1] == key_2.chars[0]
+      return true
+    else
+      return false
+    end
   end
 
   def crack_keys(message, date = today)
     shifts = find_shifts(message)
     date_offset = @cypher.calc_offsets(date)
     key_shifts = [shifts, date_offset].transpose.map{|pair| (pair[0]-pair[1])%27}
-
+    possible_key_shifts = possible_key_shifts(key_shifts)
   end
 
 end
