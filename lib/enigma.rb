@@ -2,6 +2,7 @@ require 'date'
 require './lib/cypher'
 require './lib/encoder'
 require './lib/helper_methods'
+require './lib/code_breaker'
 
 class Enigma
   include HelperMethods

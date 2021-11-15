@@ -88,6 +88,7 @@ class CodeBreaker < Encoder
     key_shifts = [shifts, date_offset].transpose.map{|pair| (pair[0]-pair[1])%27}
     possible_shifts = possible_shifts(key_shifts)
     viable_shifts = viable_shifts(possible_shifts)
+    viable_shifts = viable_shifts(viable_shifts)
     keys = build_keys(viable_shifts)
     @cypher.key = keys[0]
     @cypher.date = date
