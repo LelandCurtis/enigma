@@ -55,7 +55,7 @@ describe CodeBreaker do
 
     describe ' #possible_key_shifts' do
       before(:each) do
-        @key_shifts = [5 , 52, 26, 64]
+        @key_shifts = [5 , 25, 26, 10]
         @possible_key_shifts = [['05', '32', '59', '86'],
                                 ['25', '52', '79'],
                                 ['26', '53', '80'],
@@ -92,21 +92,25 @@ describe CodeBreaker do
       end
     end
 
-    describe ' #clean_keys' do
+    describe ' #viable_key_shifts' do
       before(:each) do
         @possible_key_shifts = [['05', '32', '59', '86'],
                                 ['25', '52', '79'],
                                 ['26', '53', '80'],
                                 ['10', '37', '64', '91']]
+        @viable_key_shifts = [['05', '32'],
+                                ['25', '52'],
+                                ['26', '53'],
+                                ['37', '64']]
       end
       it 'returns an Array' do
-        expect(@breaker.clean_keys(@possible_key_shifts)).to be_a(Array)
+        expect(@breaker.viable_key_shifts(@possible_key_shifts)).to be_a(Array)
       end
       it 'returns an Array of Arrays' do
-        expect(@breaker.clean_keys(@possible_key_shifts).all?{|v|v.class == Array}).to eq(true)
+        expect(@breaker.viable_key_shifts(@possible_key_shifts).all?{|v|v.class == Array}).to eq(true)
       end
       it 'returns correct values' do
-        expect(@breaker.clean_keys(@possible_key_shifts)).to eq(@possible_key_shifts)
+        expect(@breaker.viable_key_shifts(@possible_key_shifts)).to eq(@viable_key_shifts)
       end
     end
 
