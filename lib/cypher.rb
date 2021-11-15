@@ -1,6 +1,5 @@
 class Cypher
-attr_reader :key, :date
-attr_accessor :shifts
+attr_accessor :key, :date, :shifts
 
   def initialize(key = nil, date = nil)
     @key = key

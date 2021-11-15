@@ -83,9 +83,15 @@ class CodeBreaker < Encoder
 
   def crack_keys(message, date = today)
     shifts = find_shifts(message)
-    date_offset = @cypher.calc_offsets(date)
+    @cypher.date = date
+    date_offset = @cypher.calc_offsets
     shifts = [shifts, date_offset].transpose.map{|pair| (pair[0]-pair[1])%27}
     possible_shifts = possible_shifts(shifts)
+    viable_shifts = viable_shifts(possible_shifts)
+    keys = build_keys(viable_shifts)
+    @cypher.key = keys[0]
+    @cypher.date = date
+    keys[0]
   end
 
 end

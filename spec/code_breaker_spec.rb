@@ -145,10 +145,10 @@ describe CodeBreaker do
 
     describe ' #crack_keys' do
       it ' returns a string' do
-        expect(@breaker.crack_keys(@message, @date)).to be_a(String)
+        expect(@breaker.crack_keys(@cyphertext, @date)).to be_a(String)
       end
       it 'returns the correct string' do
-        expect(@breaker.crack_keys(@message, @date)).to eq(@key)
+        expect(@breaker.crack_keys(@cyphertext, @date)).to eq(@key)
       end
     end
   end
