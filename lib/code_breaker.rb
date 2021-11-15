@@ -95,4 +95,8 @@ class CodeBreaker < Encoder
     keys[0]
   end
 
+  def crack_easy(cyphertext)
+    shifts = find_shifts(clean(cyphertext))
+  end
+
 end

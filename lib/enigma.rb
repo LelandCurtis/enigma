@@ -33,7 +33,7 @@ class Enigma
 
   def crack_easy(cyphertext)
     breaker = CodeBreaker.new
-    breaker.find_shifts(breaker.clean(cyphertext))
+    breaker.crack_easy(cyphertext)
     message = breaker.decrypt_message(cyphertext)
     return {:decryption => message, :key => 'Key not needed for decryption', :date => 'Date not needed for decryption'}
   end

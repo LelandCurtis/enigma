@@ -157,5 +157,13 @@ describe CodeBreaker do
         expect(@breaker.crack_keys(@cyphertext, @date)).to eq(@key)
       end
     end
+
+    describe ' #crack_easy' do
+      it 'updates the cypher shifts' do
+        expect(@breaker.cypher.shifts).to eq(nil)
+        @breaker.crack_easy(@cyphertext)
+        expect(@breaker.cypher.shifts).to eq([3, 0, 19, 20])
+      end
+    end
   end
 end
