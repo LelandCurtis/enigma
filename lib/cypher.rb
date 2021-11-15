@@ -14,7 +14,7 @@ attr_accessor :shifts
     keys
   end
 
-  def calc_offsets
+  def calc_offsets(date = @date)
     (@date.to_i ** 2).to_s.chars[-4..].map{|digit|digit.to_i}
   end
 
