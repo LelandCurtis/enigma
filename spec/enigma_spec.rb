@@ -94,17 +94,17 @@ describe Enigma do
         @cyphertext_3 = 'Keder Ohulw!Thnw'
       end
       it 'returns a hash' do
-        expect(@enigma.decrypt(@cyphertext_3, @date)).to be_a(Hash)
+        expect(@enigma.crack(@cyphertext_3, @date)).to be_a(Hash)
       end
       it 'returns a hash with correct keys' do
         expected = [:decryption, :key, :date]
-        expect(@enigma.decrypt(@cyphertext_3, @date).keys).to eq(expected)
+        expect(@enigma.crack(@cyphertext_3, @date).keys).to eq(expected)
       end
       it 'returns correct key' do
-        expect(@enigma.decrypt(@cyphertext_3, @date)[:key]).to eq(@key)
+        expect(@enigma.crack(@cyphertext_3, @date)[:key]).to eq(@key)
       end
       it 'returns correct date' do
-        expect(@enigma.decrypt(@cyphertext_3, @date)[:date]).to eq(@date)
+        expect(@enigma.crack(@cyphertext_3, @date)[:date]).to eq(@date)
       end
       it 'decrypts a message using only a date' do
         expect(@enigma.crack(@cyphertext_3, @date)[:decryption]).to eq(@message_3)

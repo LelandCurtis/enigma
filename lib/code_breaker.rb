@@ -18,7 +18,7 @@ class CodeBreaker < Encoder
     correct = [26, 4, 13, 3]
     last_4_index = create_index_message(message[-4..])
     shifts = [last_4_index, correct].transpose.map{|pair| (pair[0]-pair[1])%27}
-    @cypher.shifts = shifts.rotate(4 - message.chars.count % 4)
+    @cypher.shifts = shifts.rotate(4 - clean(message).chars.count % 4)
   end
 
   def possible_shifts(shifts)
@@ -85,8 +85,8 @@ class CodeBreaker < Encoder
     shifts = find_shifts(message)
     @cypher.date = date
     date_offset = @cypher.calc_offsets
-    shifts = [shifts, date_offset].transpose.map{|pair| (pair[0]-pair[1])%27}
-    possible_shifts = possible_shifts(shifts)
+    key_shifts = [shifts, date_offset].transpose.map{|pair| (pair[0]-pair[1])%27}
+    possible_shifts = possible_shifts(key_shifts)
     viable_shifts = viable_shifts(possible_shifts)
     keys = build_keys(viable_shifts)
     @cypher.key = keys[0]

@@ -27,10 +27,12 @@ describe CodeBreaker do
   describe 'methods' do
     before(:each) do
       @crackable_message = 'This is a crackable message end'
+      @crackable_message_2 = 'This is a crackable message! end'
       @cypher = Cypher.new(@key, @date)
       @encoder = Encoder.new(@cypher)
       @breaker = CodeBreaker.new()
       @cyphertext = @encoder.encrypt_message(@crackable_message)
+      @cyphertext_2 = @encoder.encrypt_message(@crackable_message_2)
     end
 
     describe ' #find_shifts' do
@@ -46,6 +48,10 @@ describe CodeBreaker do
       it 'returns the expect shift in proper order' do
         expected = @cypher.shifts
         expect(@breaker.find_shifts(@cyphertext)).to eq(expected)
+      end
+      it 'returns the expect shift in proper order' do
+        expected = @cypher.shifts
+        expect(@breaker.find_shifts(@cyphertext_2)).to eq(expected)
       end
       it 'returns shifts that can decrypt entire message' do
         @breaker.find_shifts(@cyphertext)
