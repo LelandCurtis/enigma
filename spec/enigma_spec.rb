@@ -58,7 +58,7 @@ describe Enigma do
       it 'can use the defualt date of today' do
         allow(@enigma).to receive(:today).and_return("211111")
         message_1 = 'Hello World!'
-        expect(@enigma.encrypt(message_1, @key)[:encryption]).to eq('NhdauCOdxow!')
+        expect(@enigma.encrypt(message_1, @key)[:encryption]).to eq('NhdaucOdxow!')
       end
     end
 

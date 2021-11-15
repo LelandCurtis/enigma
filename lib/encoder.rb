@@ -3,7 +3,7 @@ require './lib/cypher'
 class Encoder
   attr_accessor :message, :cypher, :letter_message, :index_message, :alphabet
   @@alphabet = ('a'..'z').to_a << ' '
-  
+
   def initialize(cypher)
     @cypher = cypher
     @alphabet = ('a'..'z').to_a << ' '
@@ -14,6 +14,7 @@ class Encoder
   end
 
   def upcase?(char)
+    return false if char == ' '
     char == char.upcase
   end
 
