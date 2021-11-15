@@ -87,5 +87,28 @@ describe Enigma do
         expect(@enigma.decrypt(cyphertext_1, @key, @date)[:decryption]).to eq('Hello World!')
       end
     end
+
+    describe ' #crack' do
+      before(:each) do
+        @message_3 = 'Hello World! end'
+        @cyphertext_3 = 'Keder Ohulw!Thnw'
+      end
+      it 'returns a hash' do
+        expect(@enigma.decrypt(@cyphertext_3, @date)).to be_a(Hash)
+      end
+      it 'returns a hash with correct keys' do
+        expected = [:decryption, :key, :date]
+        expect(@enigma.decrypt(@cyphertext_3, @date).keys).to eq(expected)
+      end
+      it 'returns correct key' do
+        expect(@enigma.decrypt(@cyphertext_3, @date)[:key]).to eq(@key)
+      end
+      it 'returns correct date' do
+        expect(@enigma.decrypt(@cyphertext_3, @date)[:date]).to eq(@date)
+      end
+      it 'decrypts a message using only a date' do
+        expect(@enigma.crack(@cyphertext_3, @date)[:decryption]).to eq(@message_3)
+      end
+    end
   end
 end
