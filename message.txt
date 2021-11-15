@@ -1,0 +1,6 @@
+"Hello world!
+This is an example long message with exclamation and multiple lines!
+I hope this is tough enough
+
+TO
+trip_up my encoder and decrypter. end"
