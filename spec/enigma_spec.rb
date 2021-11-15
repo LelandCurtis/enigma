@@ -25,15 +25,6 @@ describe Enigma do
       @date = '040895'
     end
 
-    describe ' #today' do
-      it 'returns a string' do
-        expect(@enigma.today).to be_a(String)
-      end
-      it 'returns correct date' do
-        expect(@enigma.today).to eq('111121')
-      end
-    end
-
     describe 'random_key' do
       it 'generates a string' do
         expect(@enigma.random_key).to be_a(String)

@@ -61,7 +61,5 @@ describe CodeBreaker do
         expect(@breaker.crack_keys).to eq(@key)
       end
     end
-
-    describe ''
   end
 end

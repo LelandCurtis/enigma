@@ -1,8 +1,11 @@
 require './lib/cypher'
 require './lib/code_breaker'
 require './lib/encoder'
+require './lib/helper_methods'
 
 class CodeBreaker < Encoder
+  include HelperMethods
+
   attr_accessor :shifts
 
   def initialize
@@ -17,9 +20,9 @@ class CodeBreaker < Encoder
     shifts = [last_4_index, correct].transpose.map{|pair| (pair[0]-pair[1])%27}
     @cypher.shifts = shifts.rotate(4 - message.chars.count % 4)
   end
-  # 
-  # def crack_keys(message, date = today)
-  #
-  # end
+
+  def crack_keys(message, date = today)
+
+  end
 
 end

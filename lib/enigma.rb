@@ -1,14 +1,12 @@
 require 'date'
 require './lib/cypher'
 require './lib/encoder'
+require './lib/helper_methods'
 
 class Enigma
+  include HelperMethods
 
   def initialize
-  end
-
-  def today
-    Date.today.strftime('%d%m%y')
   end
 
   def random_key
