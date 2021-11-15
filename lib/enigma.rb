@@ -1,14 +1,13 @@
 require 'date'
 require './lib/cypher'
 require './lib/encoder'
+require './lib/helper_methods'
+require './lib/code_breaker'
 
 class Enigma
+  include HelperMethods
 
   def initialize
-  end
-
-  def today
-    Date.today.strftime('%d%m%y')
   end
 
   def random_key
@@ -22,10 +21,17 @@ class Enigma
     return {:encryption => cyphertext, :key => key, :date => date}
   end
 
-  def decrypt(message, key = random_key, date = today)
+  def decrypt(cyphertext, key = random_key, date = today)
     cypher = Cypher.new(key, date)
     encoder = Encoder.new(cypher)
-    message = encoder.decrypt_message(message)
+    message = encoder.decrypt_message(cyphertext)
+    return {:decryption => message, :key => key, :date => date}
+  end
+
+  def crack(cyphertext, date = today)
+    breaker = CodeBreaker.new
+    key = breaker.crack_keys(cyphertext, date)
+    message = breaker.decrypt_message(cyphertext)
     return {:decryption => message, :key => key, :date => date}
   end
 end
