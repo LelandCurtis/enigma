@@ -53,11 +53,14 @@ describe CodeBreaker do
       end
     end
 
-    # describe ' #crack_keys' do
-    #   it ' returns keys' do
-    #
-    #   end
-    # end
+    describe ' #crack_keys' do
+      it ' returns a string' do
+        expect(@breaker.crack_keys).to be_a(String)
+      end
+      it 'returns the correct string' do
+        expect(@breaker.crack_keys).to eq(@key)
+      end
+    end
 
     describe ''
   end
