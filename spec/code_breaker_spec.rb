@@ -55,11 +55,11 @@ describe CodeBreaker do
 
     describe ' #possible_key_shifts' do
       before(:each) do
-        @key_shifts = [5 , 10, 26, 14]
+        @key_shifts = [5 , 52, 26, 64]
         @possible_key_shifts = [['05', '32', '59', '86'],
-                                ['10', '37', '64', '91'],
+                                ['25', '52', '79'],
                                 ['26', '53', '80'],
-                                ['14', '41', '68', '95']]
+                                ['10', '37', '64', '91']]
       end
       it 'returns an Array' do
         expect(@breaker.possible_key_shifts(@key_shifts)).to be_a(Array)
@@ -89,6 +89,24 @@ describe CodeBreaker do
       end
       it 'returns false if second index of first key does not match the first index of the secnd key' do
         expect(@breaker.valid_key_shift?(@key_1, @key_3)).to eq(false)
+      end
+    end
+
+    describe ' #clean_keys' do
+      before(:each) do
+        @possible_key_shifts = [['05', '32', '59', '86'],
+                                ['25', '52', '79'],
+                                ['26', '53', '80'],
+                                ['10', '37', '64', '91']]
+      end
+      it 'returns an Array' do
+        expect(@breaker.clean_keys(@possible_key_shifts)).to be_a(Array)
+      end
+      it 'returns an Array of Arrays' do
+        expect(@breaker.clean_keys(@possible_key_shifts).all?{|v|v.class == Array}).to eq(true)
+      end
+      it 'returns correct values' do
+        expect(@breaker.clean_keys(@possible_key_shifts)).to eq(@possible_key_shifts)
       end
     end
 
