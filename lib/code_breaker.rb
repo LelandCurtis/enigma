@@ -67,15 +67,19 @@ class CodeBreaker < Encoder
     viable_shifts = (pass_2 << pass_1[0]).reverse
   end
 
-  # def build_keys(shifts)
-  #   shifts[0].map do |shift_start|
-  #     key << shift_start
-  #     i = 1
-  #     3.times do
-  #       shifts[i]
-  #     end
-  #   end
-  # end
+  def build_keys(shifts)
+    shifts[0].map do |shift_start|
+      key = []
+      key << shift_start
+      last_shift = shift_start
+      last_chars = shifts[1..-1].map do |shifts|
+        last_shift = find_valid_shift(last_shift, shifts)
+        last_shift.chars[-1]
+      end
+      key << last_chars
+      key.join('')
+    end
+  end
 
   def crack_keys(message, date = today)
     shifts = find_shifts(message)
