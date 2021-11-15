@@ -11,6 +11,12 @@ describe Encoder do
     @date = '040895'
     @cypher = Cypher.new(@key, @date)
     @encoder = Encoder.new(@cypher)
+    @big_message = "Hello world!
+This is an example long message with exclamation and multiple lines!
+I hope this is tough enough
+
+TO
+trip_up my encoder and decrypter. end"
   end
 
   describe 'initialize' do
@@ -36,13 +42,14 @@ describe Encoder do
       end
     end
 
-    describe ' #upper?' do
+    describe ' #upcase?' do
       it 'returns true if character is not lowercase' do
         expect(@encoder.upcase?('A')).to eq(true)
         expect(@encoder.upcase?('!')).to eq(true)
       end
       it 'returns false if character is lowercase' do
         expect(@encoder.upcase?('a')).to eq(false)
+        expect(@encoder.upcase?(' ')).to eq(false)
       end
     end
 
@@ -55,6 +62,10 @@ describe Encoder do
       end
       it 'returns correctly cleaned messages' do
         expect(@encoder.clean('He^ll2o woR_lD!')).to eq('hello world')
+      end
+      it 'returns correctly cleaned large multi-line messages' do
+        expected = "hello worldthis is an example long message with exclamation and multiple linesi hope this is tough enoughtotripup my encoder and decrypter end"
+        expect(@encoder.clean(@big_message)).to eq(expected)
       end
     end
 
@@ -101,6 +112,11 @@ describe Encoder do
       it 'returns correctly shifted array of integers' do
         expected = [24, 0, 8, 7, 24, 0, 8, 7]
         expect(@encoder.unshift([0,0,0,0,0,0,0,0])).to eq(expected)
+      end
+      it 'correctly shifts all values' do
+        all_ints = (0..26).to_a
+        expected = [24, 1, 10, 10, 1, 5, 14, 14, 5, 9, 18, 18, 9, 13, 22, 22, 13, 17, 26, 26, 17, 21, 3, 3, 21, 25, 7]
+        expect(@encoder.unshift(all_ints)).to eq(expected)
       end
     end
 
@@ -154,6 +170,13 @@ describe Encoder do
       it 'returns a properly encrypted string' do
         expect(@encoder.decrypt_message('keder ohulw!')).to eq('hello world!')
         expect(@encoder.decrypt_message('Ked_er Ohu6lw!')).to eq('Hel_lo Wor6ld!')
+      end
+    end
+
+    describe ' encrypt and decrypt integration test' do
+      it 'can encrypt and decrypt large complicated messages' do
+        big_cyphertext = @encoder.encrypt_message(@big_message)
+        expect(@encoder.decrypt_message(big_cyphertext)).to eq(@big_message)
       end
     end
   end

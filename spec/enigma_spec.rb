@@ -25,15 +25,6 @@ describe Enigma do
       @date = '040895'
     end
 
-    describe 'random_key' do
-      it 'generates a string' do
-        expect(@enigma.random_key).to be_a(String)
-      end
-      it 'generates a 5 character string' do
-        expect(@enigma.random_key.chars.count).to eq(5)
-      end
-    end
-
     describe ' #encrypt' do
       it 'returns a hash' do
         expect(@enigma.encrypt(@message, @key, @date)).to be_a(Hash)
@@ -55,10 +46,10 @@ describe Enigma do
         message_1 = 'Hello World!'
         expect(@enigma.encrypt(message_1, @key, @date)[:encryption]).to eq('Keder Ohulw!')
       end
-      it 'can use the defualt date of today' do
+      it 'can use the default date of today' do
         allow(@enigma).to receive(:today).and_return("211111")
         message_1 = 'Hello World!'
-        expect(@enigma.encrypt(message_1, @key)[:encryption]).to eq('NhdauCOdxow!')
+        expect(@enigma.encrypt(message_1, @key)[:encryption]).to eq('NhdaucOdxow!')
       end
     end
 
@@ -86,6 +77,11 @@ describe Enigma do
         cyphertext_1 = 'Keder Ohulw!'
         expect(@enigma.decrypt(cyphertext_1, @key, @date)[:decryption]).to eq('Hello World!')
       end
+      it 'can use the default date of today' do
+        allow(@enigma).to receive(:today).and_return("211111")
+        cyphertext_1 = 'NhdaucOdxow!'
+        expect(@enigma.decrypt(cyphertext_1, @key)[:decryption]).to eq('Hello World!')
+      end
     end
 
     describe ' #crack' do
@@ -109,6 +105,11 @@ describe Enigma do
       it 'decrypts a message using only a date' do
         expect(@enigma.crack(@cyphertext_3, @date)[:decryption]).to eq(@message_3)
       end
+      it 'uses today as a default date if none given' do
+        allow(@enigma).to receive(:today).and_return('040895')
+        expect(@enigma.crack(@cyphertext_3)[:decryption]).to eq(@message_3)
+      end
+
     end
   end
 end

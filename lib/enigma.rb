@@ -10,10 +10,6 @@ class Enigma
   def initialize
   end
 
-  def random_key
-    '%05d' % rand(0..99999)
-  end
-
   def encrypt(message, key = random_key, date = today)
     cypher = Cypher.new(key, date)
     encoder = Encoder.new(cypher)
