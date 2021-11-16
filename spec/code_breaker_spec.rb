@@ -166,21 +166,32 @@ describe CodeBreaker do
       end
     end
 
-    describe ' #crack_date' do
+    describe ' #crack_hard' do
+      # before(:each) do
+      #   allow(@breaker).to receive(:generate_dates).and_return(['211095', @date])
+      # end
       it 'returns a hash' do
-        expect(@breaker.crack_date).to be_a(Hash)
+        expect(@breaker.crack_hard(@cyphertext)).to be_a(Hash)
       end
       it 'returns a hash with a date and a key' do
-        expect(@breaker.crack_date.keys).to eq([:date, :key])
+        expect(@breaker.crack_hard(@cyphertext).keys).to eq([:date, :key])
       end
       it 'returns a hash with date and key string values' do
-        expect(@breaker.crack_date.values.all?{|v|v.class == String}).to eq(true)
+        expect(@breaker.crack_hard(@cyphertext).values.all?{|v|v.class == String}).to eq(true)
       end
+      it 'updates cypher with key and date values' do
+        expect(@breaker.cypher.date).to eq(nil)
+        expect(@breaker.cypher.key).to eq(nil)
+        @breaker.crack_hard(@cyphertext)
+        expect(@breaker.cypher.date).to eq('000105')
+        expect(@breaker.cypher.key).to eq('02715')
+      end
+
     end
 
     describe ' #generate_dates' do
       before(:each) do
-        @months = %w(01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12)
+        @months = %w(01 02 03 04 05 06 07 08 09 10 11 12)
         @days =  ('0'..'31').to_a.map{|num| '%02d' % num}
         @years = ('0'..'99').to_a.map{|num| '%02d' % num}
       end
@@ -188,10 +199,10 @@ describe CodeBreaker do
         expect(@breaker.generate_dates).to be_a(Array)
       end
       it 'does not return any invalid month values' do
-        expect(@breaker.generate_dates.all?{|date|@months.include?([date.chars[2..3].join(''))}).to eq(true)
+        expect(@breaker.generate_dates.all?{|date|@months.include?(date.chars[2..3].join(''))}).to eq(true)
       end
       it 'does not return any invalid day values' do
-        expect(@breaker.generate_dates.all?{|date|@days.include?([date.chars[0..1].join(''))}).to eq(true)
+        expect(@breaker.generate_dates.all?{|date|@days.include?(date.chars[0..1].join(''))}).to eq(true)
       end
       # it 'does not return any invalid year values' do
       #   expect(@breaker.generate_dates.all?{|date|@years.include?([date.chars[4..5].join(''))}).to eq(true)
