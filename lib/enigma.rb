@@ -37,4 +37,11 @@ class Enigma
     message = breaker.decrypt_message(cyphertext)
     return {:decryption => message, :key => 'Key not needed for decryption', :date => 'Date not needed for decryption'}
   end
+
+  def crack_hard(cyphertext)
+    breaker = CodeBreaker.new
+    date_key_hash = breaker.crack_hard(cyphertext)
+    message = breaker.decrypt_message(cyphertext)
+    return {:decryption => message, :key => date_key_hash[:key], :date => date_key_hash[:date]}
+  end
 end

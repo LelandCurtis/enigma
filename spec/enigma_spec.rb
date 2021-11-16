@@ -133,5 +133,28 @@ describe Enigma do
         expect(@enigma.crack_easy(@cyphertext_4)[:decryption]).to eq(@message_4)
       end
     end
+
+    describe ' #crack_hard' do
+      before(:each) do
+        @message_4 = 'Hello World! end'
+        @cyphertext_4 = 'Keder Ohulw!Thnw'
+      end
+      it 'returns a hash' do
+        expect(@enigma.crack_hard(@cyphertext_4)).to be_a(Hash)
+      end
+      it 'returns a hash with correct keys' do
+        expected = [:decryption, :key, :date]
+        expect(@enigma.crack_hard(@cyphertext_4).keys).to eq(expected)
+      end
+      it 'returns any key' do
+        expect(@enigma.crack_hard(@cyphertext_4)[:key]).to be_a(String)
+      end
+      it 'returns any date' do
+        expect(@enigma.crack_hard(@cyphertext_4)[:date]).to be_a(String)
+      end
+      it 'can decrypt a message using only a the cyphertext' do
+        expect(@enigma.crack_hard(@cyphertext_4)[:decryption]).to eq(@message_4)
+      end
+    end
   end
 end

@@ -89,6 +89,8 @@ class CodeBreaker < Encoder
     possible_shifts = possible_shifts(key_shifts)
     viable_shifts = viable_shifts(possible_shifts)
     viable_shifts = viable_shifts(viable_shifts)
+    viable_shifts = viable_shifts(viable_shifts)
+    return nil if viable_shifts == [[]]
     keys = build_keys(viable_shifts)
     @cypher.key = keys[0]
     @cypher.date = date
@@ -97,6 +99,33 @@ class CodeBreaker < Encoder
 
   def crack_easy(cyphertext)
     shifts = find_shifts(clean(cyphertext))
+  end
+
+  def crack_hard(cyphertext)
+    dates = generate_dates
+    dates.each do |date|
+      key = crack_keys(cyphertext, date)
+      if key != nil
+        @cypher.date = date
+        @cypher.key = key
+        return {:date => date, :key => key}
+      end
+    end
+  end
+
+  def generate_dates
+    months = %w(01 02 03 04 05 06 07 08 09 10 11 12)
+    days =  ('1'..'31').to_a.map{|num| '%02d' % num}
+    years = ('0'..'99').to_a.map{|num| '%02d' % num}
+    possible_dates = []
+    days.each do |day|
+      months.each do |month|
+        years.each do |year|
+          possible_dates << [day, month, year].join('')
+        end
+      end
+    end
+    possible_dates
   end
 
 end
