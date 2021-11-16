@@ -183,7 +183,7 @@ describe CodeBreaker do
         expect(@breaker.cypher.date).to eq(nil)
         expect(@breaker.cypher.key).to eq(nil)
         @breaker.crack_hard(@cyphertext)
-        expect(@breaker.cypher.date).to eq('000105')
+        expect(@breaker.cypher.date).to eq('010105')
         expect(@breaker.cypher.key).to eq('02715')
       end
 
@@ -192,7 +192,7 @@ describe CodeBreaker do
     describe ' #generate_dates' do
       before(:each) do
         @months = %w(01 02 03 04 05 06 07 08 09 10 11 12)
-        @days =  ('0'..'31').to_a.map{|num| '%02d' % num}
+        @days =  ('1'..'31').to_a.map{|num| '%02d' % num}
         @years = ('0'..'99').to_a.map{|num| '%02d' % num}
       end
       it 'returns an array' do
